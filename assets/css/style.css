@@ -229,6 +229,15 @@ p { margin: 0 0 1em; }
   padding: 72px 0 44px;
 }
 
+/* Photo with the spelled-out email underneath (no mailto link, so bots skip it) */
+.avatar-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  margin: 0;
+}
+
 .avatar {
   width: 240px;
   height: 240px;
@@ -238,6 +247,19 @@ p { margin: 0 0 1em; }
   border: 5px solid var(--surface);
   box-shadow: 0 0 0 1px var(--border), 0 14px 36px rgba(20, 20, 30, .14);
 }
+
+.email-note,
+.email-inline {
+  font-family: var(--font-mono);
+  letter-spacing: .01em;
+}
+.email-note {
+  font-size: .82rem;
+  color: var(--text-muted);
+  text-align: center;
+  white-space: nowrap;
+}
+.email-inline { font-size: .92em; color: var(--text); }
 
 .hero h1 {
   font-family: var(--font-serif);

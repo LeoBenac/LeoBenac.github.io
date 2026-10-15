@@ -28,19 +28,6 @@
     syncTheme();
   });
 
-  // ---- Email: kept out of the page source so address-harvesting bots miss it ----
-  // data-email holds the address reversed and base64-encoded.
-  document.querySelectorAll("[data-email]").forEach((el) => {
-    try {
-      const addr = atob(el.dataset.email).split("").reverse().join("");
-      el.href = "mailto:" + addr;
-      const label = el.querySelector(".email-text");
-      if (label) label.textContent = addr;
-    } catch (e) {
-      /* leave the fallback link to the Contact section */
-    }
-  });
-
   // ---- Mobile menu ----
   const menuBtn = document.querySelector(".menu-toggle");
   const navLinks = document.getElementById("nav-links");
