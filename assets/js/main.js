@@ -2,7 +2,7 @@
 (() => {
   const root = document.documentElement;
 
-  // ---- Theme toggle (light by default; dark is remembered once chosen) ----
+  // ---- Theme toggle (dark by default; light is remembered once chosen) ----
   const themeBtn = document.querySelector(".theme-toggle");
   const isDark = () => root.dataset.theme === "dark";
   const syncTheme = () => {
@@ -18,11 +18,10 @@
   syncTheme();
   themeBtn?.addEventListener("click", () => {
     const dark = !isDark();
-    if (dark) root.dataset.theme = "dark";
-    else delete root.dataset.theme;
+    root.dataset.theme = dark ? "dark" : "light";
     try {
-      if (dark) localStorage.setItem("theme", "dark");
-      else localStorage.removeItem("theme");
+      if (dark) localStorage.removeItem("theme");
+      else localStorage.setItem("theme", "light");
     } catch (e) {
       /* storage unavailable: the theme still applies for this visit */
     }

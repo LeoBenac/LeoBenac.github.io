@@ -1,7 +1,7 @@
 /* ==========================================================================
    Leo Benac — personal site
    Plain CSS, no build step. Colors live in the tokens below; the site opens in
-   light mode, and the moon button switches to dark (remembered per visitor).
+   dark mode, and the sun button switches to light (remembered per visitor).
    ========================================================================== */
 
 :root {
