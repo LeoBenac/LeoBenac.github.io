@@ -1,7 +1,7 @@
 /* ==========================================================================
    Leo Benac — personal site
-   Plain CSS, no build step. Colors live in the tokens below; dark mode is
-   automatic (system setting) and can be overridden with the toggle.
+   Plain CSS, no build step. Colors live in the tokens below; the site opens in
+   light mode, and the moon button switches to dark (remembered per visitor).
    ========================================================================== */
 
 :root {
@@ -24,24 +24,6 @@
   --maxw: 1040px;
   --nav-h: 60px;
   color-scheme: light;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --bg: #111113;
-    --bg-soft: #1a1a1d;
-    --surface: #17171a;
-    --text: #ececf0;
-    --text-muted: #a3a3ad;
-    --border: #2b2b31;
-    --accent: #f2788a;
-    --accent-hover: #f8a0ad;
-    --accent-soft: rgba(242, 120, 138, .12);
-    --focus: #7aa2ff;
-    --on-accent: #1a0b0e;
-    --shadow: 0 1px 2px rgba(0, 0, 0, .3);
-    color-scheme: dark;
-  }
 }
 
 :root[data-theme="dark"] {
@@ -207,10 +189,6 @@ p { margin: 0 0 1em; }
 .icon-btn svg { width: 19px; height: 19px; }
 
 .theme-toggle .icon-sun { display: none; }
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) .theme-toggle .icon-sun { display: block; }
-  :root:not([data-theme="light"]) .theme-toggle .icon-moon { display: none; }
-}
 :root[data-theme="dark"] .theme-toggle .icon-sun { display: block; }
 :root[data-theme="dark"] .theme-toggle .icon-moon { display: none; }
 
@@ -245,50 +223,53 @@ p { margin: 0 0 1em; }
 
 .hero {
   display: grid;
-  grid-template-columns: 220px 1fr;
+  grid-template-columns: 240px 1fr;
   gap: 48px;
   align-items: center;
-  padding: 64px 0 40px;
+  padding: 72px 0 44px;
 }
 
 .avatar {
-  width: 220px;
-  height: 220px;
+  width: 240px;
+  height: 240px;
   border-radius: 50%;
   object-fit: cover;
   background: var(--bg-soft);
-  box-shadow: var(--shadow);
-  border: 4px solid var(--surface);
+  border: 5px solid var(--surface);
+  box-shadow: 0 0 0 1px var(--border), 0 14px 36px rgba(20, 20, 30, .14);
 }
 
 .hero h1 {
   font-family: var(--font-serif);
-  font-size: clamp(2.3rem, 5vw, 3.2rem);
-  font-weight: 600;
-  line-height: 1.08;
-  letter-spacing: -.015em;
+  font-size: clamp(2.7rem, 6vw, 4rem);
+  font-weight: 700;
+  line-height: 1.04;
+  letter-spacing: -.02em;
   margin: 0 0 10px;
 }
 
-.tagline {
-  font-size: 1.22rem;
-  line-height: 1.45;
-  margin: 0 0 14px;
-  color: var(--text);
+.role {
+  margin: 0 0 18px;
+  font-size: clamp(1.25rem, 2.6vw, 1.55rem);
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: -.01em;
+  color: var(--accent);
 }
 
 .affil {
   margin: 0;
-  color: var(--text-muted);
-  line-height: 1.6;
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: var(--text);
 }
-.affil a { font-weight: 500; }
+.affil a { font-weight: 600; }
 
 .social {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-  margin: 22px 0 0;
+  margin: 26px 0 0;
   padding: 0;
   list-style: none;
 }
@@ -296,18 +277,18 @@ p { margin: 0 0 1em; }
 .social a {
   display: inline-flex;
   align-items: center;
-  gap: 7px;
-  padding: 7px 13px;
-  border: 1px solid var(--border);
+  gap: 8px;
+  padding: 8px 14px;
+  border: 1.5px solid var(--border);
   border-radius: 999px;
   background: var(--surface);
   color: var(--text);
-  font-size: .88rem;
-  font-weight: 500;
-  transition: border-color .15s, color .15s;
+  font-size: .94rem;
+  font-weight: 600;
+  transition: border-color .15s, color .15s, background-color .15s;
 }
 .social a:hover { border-color: var(--accent); color: var(--accent); text-decoration: none; }
-.social svg { width: 16px; height: 16px; flex: none; }
+.social svg { width: 18px; height: 18px; flex: none; }
 .social a.primary { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
 .social a.primary:hover { background: var(--accent-hover); border-color: var(--accent-hover); color: var(--on-accent); }
 
@@ -319,32 +300,38 @@ p { margin: 0 0 1em; }
     gap: 24px;
     padding: 40px 0 28px;
   }
-  .avatar { width: 168px; height: 168px; }
-  .social { justify-content: center; }
+  .avatar { width: 184px; height: 184px; }
+  .affil { font-size: 1.02rem; }
+  .social { justify-content: center; gap: 8px; }
+  .social a { padding: 8px 14px; font-size: .92rem; }
 }
 
 /* ---------- Job-market callout ---------- */
 
 .callout {
   display: flex;
-  gap: 14px;
+  gap: 16px;
   align-items: flex-start;
   margin: 0 0 8px;
-  padding: 18px 20px;
+  padding: 20px 24px;
   border: 1px solid var(--border);
-  border-color: color-mix(in srgb, var(--accent) 35%, var(--border));
+  border-color: color-mix(in srgb, var(--accent) 30%, var(--border));
+  border-left: 5px solid var(--accent);
   border-radius: var(--radius);
   background: var(--accent-soft);
+  font-size: 1.08rem;
+  line-height: 1.65;
 }
 .callout p { margin: 0; }
-.callout strong { color: var(--text); }
+.callout strong { color: var(--accent); font-weight: 700; }
+.callout a { font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
 
 .pulse {
   position: relative;
   flex: none;
   width: 10px;
   height: 10px;
-  margin-top: 8px;
+  margin-top: 9px;
   border-radius: 50%;
   background: var(--accent);
 }

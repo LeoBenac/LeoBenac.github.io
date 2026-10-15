@@ -2,11 +2,9 @@
 (() => {
   const root = document.documentElement;
 
-  // ---- Theme toggle (follows the system unless the visitor picks otherwise) ----
+  // ---- Theme toggle (light by default; dark is remembered once chosen) ----
   const themeBtn = document.querySelector(".theme-toggle");
-  const systemDark = window.matchMedia("(prefers-color-scheme: dark)");
-  const isDark = () =>
-    root.dataset.theme ? root.dataset.theme === "dark" : systemDark.matches;
+  const isDark = () => root.dataset.theme === "dark";
   const syncTheme = () => {
     themeBtn?.setAttribute(
       "aria-label",
@@ -15,19 +13,16 @@
     // Keep the mobile browser toolbar in step with the page.
     document
       .querySelectorAll('meta[name="theme-color"]')
-      .forEach((m) => m.setAttribute("content", isDark() ? "#111113" : "#a51c30"));
+      .forEach((m) => m.setAttribute("content", isDark() ? "#111113" : "#ffffff"));
   };
   syncTheme();
-  systemDark.addEventListener?.("change", syncTheme);
   themeBtn?.addEventListener("click", () => {
-    const next = isDark() ? "light" : "dark";
-    // Choosing the system's own theme goes back to following the system.
-    const followsSystem = (next === "dark") === systemDark.matches;
-    if (followsSystem) delete root.dataset.theme;
-    else root.dataset.theme = next;
+    const dark = !isDark();
+    if (dark) root.dataset.theme = "dark";
+    else delete root.dataset.theme;
     try {
-      if (followsSystem) localStorage.removeItem("theme");
-      else localStorage.setItem("theme", next);
+      if (dark) localStorage.setItem("theme", "dark");
+      else localStorage.removeItem("theme");
     } catch (e) {
       /* storage unavailable: the theme still applies for this visit */
     }
