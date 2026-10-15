@@ -1,0 +1,4 @@
+# Private notes and local tooling: keep out of the public site
+LAUNCH_CHECKLIST.md
+.claude/
+.DS_Store
