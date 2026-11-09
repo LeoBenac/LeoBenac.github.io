@@ -43,7 +43,8 @@ Then open http://localhost:8000. (Opening `index.html` directly in a browser als
 ## Common edits
 
 - **Photo:** save a square JPG (at least 440×440 px) as `assets/img/profile.jpg`.
-- **CV:** replace `files/Leo_Benac_CV.pdf` (keep the file name so links keep working).
+- **CV:** replace `files/Leo_Benac_CV.pdf` (keep the file name), then change the `?v=` date on the
+  CV links in `index.html` so browsers fetch the new file instead of a cached copy.
 - **News:** add a new `<li>` at the top of the `<ul class="news">` list.
 - **Paper:** copy one `<li class="pub">` block in the Publications section and edit it.
   Give it a unique `id="pub-..."`, and unique `bib-...` ids for its BibTeX button and panel.
